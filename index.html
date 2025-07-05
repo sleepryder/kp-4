@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Room: Two Thousands</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Frijole&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="scripts/script.js" type="module" defer></script>
+</head>
+
+<body>
+
+  <div id="retro-cursor"></div>
+
+  <div id="season-overlay"></div>
+
+
+<audio id="hum-audio" src="audio/hum.mp3" autoplay loop></audio> 
+
+<audio id="background-audio" src="audio/background.mp3" preload="metadata" loop></audio> 
+
+<canvas id="season-canvas"></canvas>
+<img id="spring-petal" src="images/flower.jpg" style="display: none;">
+<img id="spring-heart" src="images/heart.jpg" style="display: none;">
+
+<audio id="spring-audio" src="audio/spring.mp3" loop></audio>
+<audio id="summer-audio" src="audio/summer.mp3" loop></audio>
+<audio id="autumn-audio" src="audio/autumn.mp3" loop></audio>
+<audio id="winter-audio" src="audio/winter.mp3" loop></audio>
+
+  <div id="intro-overlay">
+    <div class="intro-content">
+      <h1>Welcome to the Room</h1>
+      <p>You are about to enter a fragment of memory.<br>
+      This space is fragile. Some objects might respond to your presence.
+      Trust what moves. Not everything is real.</p>
+      <button id="enter-btn">Enter Memory</button>
+    </div>
+  </div>
+
+  <div id="ui-panel">
+    <div class="season-switch">
+      <label>Season:</label>
+      <select id="season-selector">
+        <option value="spring">Spring</option>
+        <option value="summer">Summer</option>
+        <option value="autumn">Autumn</option>
+        <option value="winter">Winter</option>
+      </select>
+    </div>
+  
+    <button id="toggle-light">Day/Night</button>
+  </div>
+
+  <div class="wrapper">
+    <div class="container container--inline">
+    <div class="glass-container glass-container--rounded glass-container--large">
+      <div class="glass-filter"></div>
+      <div class="glass-overlay"></div>
+      <div class="glass-specular"></div>
+      <div class="glass-content glass-content--inline">
+  
+        <div class="player">
+          <div class="player__thumb">
+            <img class="player__img" src='images/room.jpg' alt=''>
+            <div class="player__legend">
+              <h3 class="player__legend__title">Giuded Meditation</h3>
+              <span class="player__legend__sub-title">Old Future Fox Gang</span>
+            </div>
+          </div>
+  
+          <div class="player__controls">
+            <div class="player__controls__play" id="play-pause-btn" title="Play / Pause">
+              <svg viewBox="0 0 448 512" width="24" title="play-icon">
+                <path fill="white" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="container">
+  <div class="glass-container">
+      <div class="glass-filter"></div>
+      <div class="glass-overlay"></div>
+      <div class="glass-specular"></div>
+      
+      <svg style="display: none">
+        <filter id="lg-dist" x="0%" y="0%" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.008 0.008" numOctaves="2" seed="92" result="noise" />
+          <feGaussianBlur in="noise" stdDeviation="2" result="blurred" />
+          <feDisplacementMap in="SourceGraphic" in2="blurred" scale="70" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </svg>
+    </div>
+  </div>
+  </div>
+
+  <div id="room">
+    <img id="room-image" src="images/room.jpg" alt="Room">
+  
+    <div class="hotspot" style="left:8.85%; top:5.55%;  width:7.80%; height:16.66%;" data-text="I presume that’s someone’s grandpa."></div>
+    <div class="hotspot" style="left:59.89%; top:51.37%; width:10.41%; height:12.96%;" data-text="Classic. Weaponized."></div>
+    <div class="hotspot" style="left:55.73%; top:74.74%; width:6.25%; height:18.51%;" data-text="Wth... an ancient science experiment or Babushka’s Strawberry Kompot, maybe?"></div>
+    <div class="hotspot" style="left:41.66%; top:4.62%;  width:15.62%; height:11.11%;" data-text="Why does this creepy apartment have such a fancy chandelier?!"></div>
+    <div class="hotspot" style="left:30.73%; top:42.03%; width:4.16%; height:7.40%;" data-text="Empty shelf. Perfect spot for imaginary trophies."></div>
+    <div class="hotspot" style="left:51.04%; top:37.03%; width:4.16%; height:7.40%;" data-text="What is this place?"></div>
+    <div class="hotspot" style="left:78.12%; top:30.55%; width:5.20%; height:27.77%;" data-text="Well… Welcome home."></div>
+  </div>
+  
+  <div id="concept-tooltip">
+    <button id="concept-toggle">?</button>
+    <div id="concept-text">
+      This is a memory simulation constructed from a random image I found browsing the web.
+      Explore what feels familiar.
+    </div>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('concept-toggle');
+    const text = document.getElementById('concept-text');
+  
+    toggle.addEventListener('click', () => {
+      if (text.style.display === 'block') {
+        text.style.display = 'none';
+      } else {
+        text.style.display = 'block';
+      }
+    });
+  </script>
+  
+  
+</body>
+</html>
